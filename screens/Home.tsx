@@ -133,14 +133,12 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     textTransform:"uppercase",
-    fontSize:"sm",
     width:200,
     textAlign:"center",
     borderRadius:20,
     backgroundColor:"#5352ed",
     marginBottom:3,
     padding:10,
-  
     fontSize: 16,
   },
 });

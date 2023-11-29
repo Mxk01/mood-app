@@ -1,30 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import React from 'react'
+import Carousel from '../components/WelcomeScreen/Carousel'
 
-
-const PlaceholderImage = require('../assets/images/background-image.png');
-
-export default function App() {
+function MultiStep() {
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-      
-      </View>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <Carousel/>
+  )
 }
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#25292e',
-    alignItems: 'center',
-  },
-  imageContainer: {
-    flex: 1,
-    paddingTop: 58,
-  },
-});
-
+export default MultiStep

@@ -11,9 +11,10 @@ export default function Navigation () {
     return (
         <NavigationContainer>
           {/*initialRouteName - Sets the default screen of the stack. Must match one of the keys in route configs.*/}
-        <Stack.Navigator initialRouteName='Home'>
+        <Stack.Navigator initialRouteName='MultiStep'>
+        <Stack.Screen name="MultiStep" options={{headerShown: false}} component={MultiStep} />
         <Stack.Screen name="Home" options={{headerShown: false}} component={Home} />
-          <Stack.Screen name="MultiStep" options={{headerShown: false}} component={MultiStep} />
+           
          </Stack.Navigator>
       </NavigationContainer>
     )
