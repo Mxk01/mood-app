@@ -48,7 +48,7 @@ export default function MultiStep() {
     }
   };
     const processImage = async() => {
-      const VISION_API_KEY = 'AIzaSyBpSymCYW00h8BnpVH0Xd7HfPYBqYrYCdo';
+      const VISION_API_KEY = 'AIzaSyDSlJZZZbswHvgbAeRAFqUTomorCW9juF4';
       const API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${VISION_API_KEY}`;
       try {
           
@@ -86,7 +86,7 @@ export default function MultiStep() {
       <View style={styles.imageContainer}>
         {image && <Image source={{ uri: image }} style={styles.image} />}
       </View>
-      <TouchableOpacity style={styles.button} onPress={resetView}>
+      <TouchableOpacity style={styles.button} onPress={processImage}>
            <Text style={styles.buttonText}>Process Image</Text>
        </TouchableOpacity>
  
