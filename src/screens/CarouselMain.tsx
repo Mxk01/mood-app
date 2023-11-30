@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Button } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import LottieView from 'lottie-react-native';
 import Svg, { Path } from 'react-native-svg';
-import CircleButton from '../components/CircleButton';
+import CircleButton  from '../components/CircleButton';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 const CarouselMain = () => {
