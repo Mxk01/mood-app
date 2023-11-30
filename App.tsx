@@ -10,7 +10,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import Navigation from './navigation/Navigation';
+import Navigation from './src/navigation/Navigation';
 
 
 function App(): JSX.Element {

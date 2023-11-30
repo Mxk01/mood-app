@@ -10,12 +10,12 @@ import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
 import CircleButton from '../components/CircleButton';
 import IconButton from '../components/Icon';
 import Icon from '../components/Icon';
-
+import { SpeedDial } from 'react-native-elements';
 export default function MultiStep() {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-
+  const [open, setOpen] = React.useState(false);
   const resetView = () => {
-    navigation.push('MultiStep');
+    navigation.push('MainCarousel');
   };
 
   const [image, setImage] = useState<string | null>(null);
@@ -83,23 +83,57 @@ export default function MultiStep() {
         }
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        {image && <Image source={{ uri: image }} style={styles.image} />}
-      </View>
-      <TouchableOpacity style={styles.button} onPress={processImage}>
-           <Text style={styles.buttonText}>Process Image</Text>
-       </TouchableOpacity>
- 
-      <TouchableOpacity style={styles.button} onPress={resetView}>
-           <Text style={styles.buttonText}>Reset View</Text>
-       </TouchableOpacity>
-      <View style={{flexDirection:"row",padding:20}}> 
-      <Icon  icon="edit" label="Edit" onPress={doSomething} />
-
-      <CircleButton onPress={pickImage}/>
-      <Icon  icon="refresh" label="Reset" onPress={()=>setImage('')} />
-      </View>
+    <View style={styles.imageContainer}>
+      {image && <Image source={{ uri: image }} style={styles.image} />}
     </View>
+    <TouchableOpacity style={styles.button} onPress={processImage}>
+      <Text style={styles.buttonText}>Process Image</Text>
+    </TouchableOpacity>
+
+    {/* <TouchableOpacity style={styles.button} onPress={resetView}>
+      <Text style={styles.buttonText}>Reset View</Text>
+    </TouchableOpacity> */}
+
+    <View style={{ flexDirection: "row", padding: 20, justifyContent: "center", alignItems: "center" }}>
+      {/* Your additional components (IconButton and CircleButton) used to be here */}
+    </View>
+{/* <Icon  icon="edit" label="Edit" onPress={doSomething} />
+
+    <CircleButton onPress={pickImage}/> */}
+    {/* <Icon  icon="refresh" label="Reset" onPress={()=>setImage('')} /> */}
+      <SpeedDial
+isOpen={open}
+icon={{ name: 'edit', color: '#fff' }}
+openIcon={{ name: 'close', color: '#fff' }}
+onOpen={() => setOpen(!open)}
+onClose={() => setOpen(!open)}
+>
+<SpeedDial.Action
+  icon={{ name: 'add', color: '#fff' }}
+  title="Add"
+  onPress={() => 
+  {
+    pickImage()
+    setOpen(false)
+  }}
+/>
+<SpeedDial.Action
+  icon={{ name: 'delete', color: '#fff' }}
+  title="Delete"
+  onPress={() => console.log('Delete Something')}
+/>
+  <SpeedDial.Action
+  icon={{ name: 'autorenew', color: '#fff' }}
+  title="Refresh"
+  onPress={() => setImage('')}
+/>
+<SpeedDial.Action
+    icon={{ name: 'help-outline', color: '#fff' }}
+    title="Help"
+    onPress={() => resetView()}
+  />
+</SpeedDial>
+  </View>
   );
 }
 const styles = StyleSheet.create({

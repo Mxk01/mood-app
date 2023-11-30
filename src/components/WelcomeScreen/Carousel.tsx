@@ -1,4 +1,4 @@
-import Data from '../utils/Data'
+import Data from '../../utils/Data'
 import {Animated, FlatList, NativeScrollEvent, NativeSyntheticEvent, StyleSheet, Text, View} from 'react-native';
 import {useRef, useState} from 'react';
 import ItemSlide from './ItemSlide'

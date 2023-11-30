@@ -13,8 +13,8 @@ export default function Navigation () {
         <NavigationContainer>
           {/*initialRouteName - Sets the default screen of the stack. Must match one of the keys in route configs.*/}
         <Stack.Navigator initialRouteName='Home'>
-        {/* <Stack.Screen name="MainCarousel" options={{headerShown: false}} component={CarouselMain} /> */}
         <Stack.Screen name="Home" options={{headerShown: false}} component={Home} />
+        <Stack.Screen name="MainCarousel" options={{headerShown: false}} component={CarouselMain} />
 
         <Stack.Screen name="MultiStep" options={{headerShown: false}} component={MultiStep} />
             

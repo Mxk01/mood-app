@@ -1,12 +1,20 @@
 import React, { useState,useRef,useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Button } from 'react-native';
 import PagerView from 'react-native-pager-view';
+import LottieView from 'lottie-react-native';
 import Svg, { Path } from 'react-native-svg';
+import CircleButton from '../components/CircleButton';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 const CarouselMain = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [currentPage, setCurrentPage] = useState(0);
   const animation = useRef(null);
   const onPageSelected = (event: { nativeEvent: { position: number } }) => {
     setCurrentPage(event.nativeEvent.position);
+  };
+  const goHome = () => {
+    navigation.push('Home');
   };
   // const pathRef = useRef<any>(null);
   // let animationData = require('../assets/animations/astronaut-reading.json')
@@ -29,6 +37,8 @@ const CarouselMain = () => {
 
     return (
       <View style={styles.pagination}>
+          {currentPage==3 ? <Text>Done</Text> :''}
+        <View style={{flexDirection:"row"}}>  
         {pages.map((_, index) => (
           <TouchableOpacity
             key={index.toString()}
@@ -39,6 +49,8 @@ const CarouselMain = () => {
             onPress={() => {} /* Add your logic to handle button press here */}
           />
         ))}
+        </View>
+        <CircleButton onPress={()=>goHome()}/>
       </View>
     );
   };
@@ -51,19 +63,12 @@ const CarouselMain = () => {
         onPageSelected={onPageSelected}
       >
         <View style={styles.page} key="1">
-        {/* <Svg width={animationData.w} height={animationData.h}>
-        <Path
-          ref={pathRef}
-          fill="none"
-          stroke="black" // You can customize stroke color
-          strokeWidth={2} // You can customize stroke width
-        /> */}
-      {/* </Svg> */}
-        
-      </View>
+          <LottieView source={require('../assets/animations/penguin.json')} autoPlay/>
+          <Text style={styles.header}>HELLO</Text>
+        </View>
     
         <View style={styles.page} key="2">
-          <Text>Second page</Text>
+          <LottieView source={require('../assets/animations/astronaut.json')} autoPlay/>
         </View>
         <View style={styles.page} key="3">
           <Text>Third Page</Text>
@@ -77,16 +82,18 @@ const CarouselMain = () => {
 const styles = StyleSheet.create({
   viewPager: {
     flex: 1,
+    
   },
   page: {
     justifyContent: 'center',
     alignItems: 'center',
-  },
+   },
   pagination: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     marginTop: 10,
+    marginLeft:10,
     padding:20
   },
   paginationDot: {
@@ -94,6 +101,10 @@ const styles = StyleSheet.create({
     height: 10,
     borderRadius: 5,
     margin: 5,
+  },
+  header : {
+    marginTop: 'auto',
+    fontWeight: 'bold'
   },
 });
 
