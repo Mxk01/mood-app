@@ -84,7 +84,9 @@ export default function MultiStep() {
   return (
     <View style={styles.container}>
     <View style={styles.imageContainer}>
-      {image && <Image source={{ uri: image }} style={styles.image} />}
+      {image ? <Image source={{ uri: image }} style={styles.image} /> :
+      <View style={{backgroundColor:"#686de0",width:320,height:440,
+      borderRadius:25}}/>}
     </View>
     <TouchableOpacity style={styles.button} onPress={processImage}>
       <Text style={styles.buttonText}>Process Image</Text>
