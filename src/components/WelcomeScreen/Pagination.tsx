@@ -8,7 +8,7 @@ const Pagination = ({data, scrollX, index}:{data:any,scrollX:any,index:any}) => 
     <View style={styles.container}>
       {data.map((_, idx) => {
         const inputRange = [(idx - 1) * width, idx * width, (idx + 1) * width];
-
+ 
         const dotWidth = scrollX.interpolate({
           inputRange,
           outputRange: [12, 30, 12],
