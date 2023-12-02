@@ -1,20 +1,13 @@
 import React, { useState,useRef,useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import LottieView from 'lottie-react-native';
 import Svg, { Path } from 'react-native-svg';
-import CircleButton  from '../components/CircleButton';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 const CarouselMain = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [currentPage, setCurrentPage] = useState(0);
   const animation = useRef(null);
   const onPageSelected = (event: { nativeEvent: { position: number } }) => {
     setCurrentPage(event.nativeEvent.position);
-  };
-  const goHome = () => {
-    navigation.push('Home');
   };
   // const pathRef = useRef<any>(null);
   // let animationData = require('../assets/animations/astronaut-reading.json')
@@ -37,8 +30,6 @@ const CarouselMain = () => {
 
     return (
       <View style={styles.pagination}>
-          {currentPage==3 ? <Text>Done</Text> :''}
-        <View style={{flexDirection:"row"}}>  
         {pages.map((_, index) => (
           <TouchableOpacity
             key={index.toString()}
@@ -49,8 +40,6 @@ const CarouselMain = () => {
             onPress={() => {} /* Add your logic to handle button press here */}
           />
         ))}
-        </View>
-        <CircleButton onPress={()=>goHome()}/>
       </View>
     );
   };
@@ -87,13 +76,12 @@ const styles = StyleSheet.create({
   page: {
     justifyContent: 'center',
     alignItems: 'center',
-   },
+  },
   pagination: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
-    marginLeft:10,
     padding:20
   },
   paginationDot: {

@@ -51,13 +51,13 @@ function FaceRecognition() {
       }
     }
   };
-
+  
   return (
     <View style={styles.container}>
       {permissions && (
         <Camera
           style={styles.camera}
-          ratio="16:9"
+          ratio="4:3"
           zoom={0.03}
           type={CameraType.front}
           onFacesDetected={findFaces}
