@@ -13,7 +13,7 @@ export default function Navigation () {
     return (
         <NavigationContainer>
           {/*initialRouteName - Sets the default screen of the stack. Must match one of the keys in route configs.*/}
-        <Stack.Navigator initialRouteName='Graph'>
+        <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name="Graph" options={{headerShown: false}} component={Graph} />
 
         <Stack.Screen name="FaceDetection" options={{headerShown: false}} component={FaceRecognition} />

@@ -120,6 +120,14 @@ onClose={() => setOpen(!open)}
   }}
 />
 <SpeedDial.Action
+  icon={{ name: 'add', color: '#fff' }}
+  title="Graph"
+  onPress={() => 
+  {
+     navigation.push('Graph')
+  }}
+/>
+<SpeedDial.Action
   icon={{ name: 'delete', color: '#fff' }}
   title="Delete"
   onPress={() => console.log('Delete Something')}

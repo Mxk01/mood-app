@@ -1,113 +1,144 @@
-import React,{useRef,useEffect,useState} from "react";
-import {
-    LineChart,
-    BarChart,
-    PieChart,
-    ProgressChart,
-    ContributionGraph,
-    StackedBarChart
-  } from "react-native-chart-kit";
-  import { View,Text,Dimensions,Animated,PanResponder} from "react-native";
-  function Graph() {
-    const data = {
-      labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"],
-      datasets: [
-        {
-          data: [
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-          ],
-        },
-      ],
-    };
-  
-    const [pointX, setPointX] = useState(0);
-  
-    const panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: (_, gestureState) => {
-        // Update the x-value of the point based on the gesture position
-        const x = gestureState.moveX;
-        const numberOfDataPoints = data.labels.length;
-        const chartWidth = Dimensions.get("window").width;
-        const updatedX = Math.max(0, Math.min((x / chartWidth) * (numberOfDataPoints - 1), numberOfDataPoints - 1));
-        setPointX(updatedX);
-      },
-      onPanResponderRelease: () => {
-        // You can perform any additional actions when the user releases the touch
-      },
-    });
-  
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { BarChart } from 'react-native-gifted-charts';
+
+export default function Graph() {
+  const [selectedMood, setSelectedMood] = useState<string>(''); // Initial state is null, showing all moods
+
+  const barData = [
+    { day: '1', mood: 'happy', value: 40, frontColor: '#177AD5' },
+    { day: '1', mood: 'sad', value: 20, frontColor: '#ED6665' },
+    { day: '2', mood: 'happy', value: 50, frontColor: '#177AD5' },
+    { day: '2', mood: 'sad', value: 40, frontColor: '#ED6665' },
+    { day: '3', mood: 'happy', value: 75, frontColor: '#177AD5' },
+    { day: '3', mood: 'sad', value: 25, frontColor: '#ED6665' },
+    { day: '4', mood: 'happy', value: 30, frontColor: '#177AD5' },
+    { day: '4', mood: 'sad', value: 20, frontColor: '#ED6665' },
+    { day: '5', mood: 'happy', value: 60, frontColor: '#177AD5' },
+    { day: '5', mood: 'sad', value: 40, frontColor: '#ED6665' },
+    { day: '6', mood: 'happy', value: 65, frontColor: '#177AD5' },
+    { day: '6', mood: 'sad', value: 30, frontColor: '#ED6665' },
+  ];
+
+  const renderTitle = () => {
     return (
-      <View
-        style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#000" }}
-        {...panResponder.panHandlers}
-      >
-        <Text style={{ color: "#fff", marginBottom: 10 }}>Bezier Line Chart</Text>
-        <LineChart
-          data={{
-            labels: data.labels,
-            datasets: [
-              {
-                data: data.datasets[0].data,
-              },
-            ],
-          }}
-          width={Dimensions.get("window").width}
-          height={500}
-          yAxisLabel="m"
-          yAxisSuffix="k"
-          yAxisInterval={2}
-          chartConfig={{
-            backgroundColor: "#020024",
-            backgroundGradientFrom: "#92ff4c",
-            backgroundGradientTo: "#ff007d",
-            decimalPlaces: 2,
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16,
-            },
-            propsForDots: {
-              r: "0", // Set the radius to 0 to hide other points
-              strokeWidth: "2",
-              stroke: "#ffa726",
-            },
-          }}
-          bezier
+      <View style={{ marginVertical: 30 }}>
+ 
+        <Text
           style={{
-            marginVertical: 8,
-            borderRadius: 16,
-            marginLeft: -16, // Adjust to center the graph
-          }}
-        />
-        <View
-          style={{
-            position: "absolute",
-            left: (pointX / (data.labels.length - 1)) * (Dimensions.get("window").width - 32),
-            top: 220, // Adjust the vertical position as needed
-            zIndex: 10,
+            color: 'white',
+            fontSize: 20,
+            fontWeight: 'bold',
+            textAlign: 'center',
           }}
         >
-          <View
-            style={{
-              width: 20,
-              height: 20,
-              borderRadius: 10,
-              backgroundColor: "#fff", // White color
-              borderWidth: 2,
-              borderColor: "red", // Border color
-            }}
-          />
+          Your mood this month
+        </Text>
+
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            marginTop: 24,
+            backgroundColor: 'yellow',
+          }}
+        >
+          <TouchableOpacity onPress={() => setSelectedMood('')}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View
+                style={{
+                  height: 12,
+                  width: 12,
+                  borderRadius: 6,
+                  backgroundColor: '#177AD5',
+                  marginRight: 8,
+                }}
+              />
+              <Text
+                style={{
+                  width: 60,
+                  height: 16,
+                  color: selectedMood === '' ? 'white' : 'lightgray',
+                }}
+              >
+                All Moods
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => setSelectedMood('happy')}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View
+                style={{
+                  height: 12,
+                  width: 12,
+                  borderRadius: 6,
+                  backgroundColor: '#177AD5',
+                  marginRight: 8,
+                }}
+              />
+              <Text
+                style={{
+                  width: 60,
+                  height: 16,
+                  color: selectedMood === 'happy' ? 'white' : 'lightgray',
+                }}
+              >
+                Happy
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => setSelectedMood('sad')}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View
+                style={{
+                  height: 12,
+                  width: 12,
+                  borderRadius: 6,
+                  backgroundColor: '#ED6665',
+                  marginRight: 8,
+                }}
+              />
+              <Text
+                style={{
+                  width: 60,
+                  height: 16,
+                  color: selectedMood === 'sad' ? 'white' : 'lightgray',
+                }}
+              >
+                Sad
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     );
-  }
-  
-  export default Graph;
-  
+  };
+
+  return (
+    <View
+      style={{
+        backgroundColor: '#333340',
+        paddingBottom: 40,
+        borderRadius: 10,
+      }}
+    >
+      {renderTitle()}
+      <BarChart
+        data={selectedMood ? barData.filter((bar) => bar.mood === selectedMood) : barData}
+        barWidth={8}
+        spacing={24}
+        roundedTop
+        roundedBottom
+        hideRules
+        xAxisThickness={0}
+        yAxisThickness={0}
+        yAxisTextStyle={{ color: 'gray' }}
+        noOfSections={3}
+        maxValue={75}
+      />
+    </View>
+  );
+}
