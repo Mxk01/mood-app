@@ -14,13 +14,15 @@ export default function Navigation () {
     return (
         <NavigationContainer>
           {/*initialRouteName - Sets the default screen of the stack. Must match one of the keys in route configs.*/}
-        <Stack.Navigator initialRouteName='Quizz'>
+        <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name="Graph" options={{headerShown: false}} component={Graph} />
 
         <Stack.Screen name="FaceDetection" options={{headerShown: false}} component={FaceRecognition} />
         <Stack.Screen name="Home" options={{headerShown: false}} component={Home} />
         <Stack.Screen name="MainCarousel" options={{headerShown: false}} component={CarouselMain} />
-        <Stack.Screen name="Quizz" options={{headerShown: false}} component={Quizz} />
+        <Stack.Screen name="Quizz"
+        
+        options={{headerShown: false}} component={Quizz} />
         <Stack.Screen name="MultiStep" options={{headerShown: false}} component={MultiStep} />
             
          </Stack.Navigator>

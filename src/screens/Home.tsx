@@ -142,6 +142,11 @@ onClose={() => setOpen(!open)}
     title="Help"
     onPress={() => resetView()}
   />
+  <SpeedDial.Action
+    icon={{ name: 'help-outline', color: '#fff' }}
+    title="Quiz"
+    onPress={() => navigation.push('Quizz')}
+  />
 </SpeedDial>
   </View>
   );
