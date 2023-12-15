@@ -120,6 +120,14 @@ onClose={() => setOpen(!open)}
   }}
 />
 <SpeedDial.Action
+  icon={{ name: 'add', color: '#fff' }}
+  title="Graph"
+  onPress={() => 
+  {
+     navigation.push('Graph')
+  }}
+/>
+<SpeedDial.Action
   icon={{ name: 'delete', color: '#fff' }}
   title="Delete"
   onPress={() => console.log('Delete Something')}
@@ -133,6 +141,11 @@ onClose={() => setOpen(!open)}
     icon={{ name: 'help-outline', color: '#fff' }}
     title="Help"
     onPress={() => resetView()}
+  />
+  <SpeedDial.Action
+    icon={{ name: 'help-outline', color: '#fff' }}
+    title="Quiz"
+    onPress={() => navigation.push('Quizz')}
   />
 </SpeedDial>
   </View>
