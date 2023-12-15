@@ -1,21 +1,7 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Platform,
-} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 
-interface CircleIndicatorProps {
-  totalQuestions: number;
-  currentQuestion: number;
-}
-
-const CircleIndicator: React.FC<CircleIndicatorProps> = ({
-  totalQuestions,
-  currentQuestion,
-}) => {
+const CircleIndicator = ({ totalQuestions, currentQuestion }:{totalQuestions:any,currentQuestion:any}) => {
   const circles = Array.from({ length: totalQuestions }, (_, index) => index + 1);
 
   return (
@@ -54,10 +40,10 @@ const CircleIndicator: React.FC<CircleIndicatorProps> = ({
   );
 };
 
-const Quizz: React.FC = () => {
+const Quizz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
+  const [selectedChoice, setSelectedChoice] = useState<string|null>(null);
 
   const questions = [
     {
@@ -73,7 +59,7 @@ const Quizz: React.FC = () => {
     // Add more questions as needed
   ];
 
-  const handleAnswer = (selectedAnswer: string) => {
+  const handleAnswer = (selectedAnswer:any) => {
     const currentQuestionData = questions[currentQuestion];
 
     if (selectedAnswer === currentQuestionData.correctAnswer) {
@@ -93,15 +79,10 @@ const Quizz: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <CircleIndicator
-        totalQuestions={questions.length}
-        currentQuestion={currentQuestion + 1}
-      />
+      <CircleIndicator totalQuestions={questions.length} currentQuestion={currentQuestion + 1} />
 
       <View style={styles.choicesContainer}>
-        <Text style={styles.questionText}>
-          {questions[currentQuestion].question}
-        </Text>
+        <Text style={styles.questionText}>{questions[currentQuestion].question}</Text>
         {questions[currentQuestion].choices.map((choice, index) => (
           <TouchableOpacity
             key={index}
@@ -109,10 +90,7 @@ const Quizz: React.FC = () => {
               styles.choiceButton,
               selectedChoice === choice && styles.selectedChoice,
             ]}
-            onPress={() => {
-              setSelectedChoice(choice);
-              handleAnswer(choice);
-            }}
+            onPress={() => setSelectedChoice(choice)}
           >
             <Text
               style={[
@@ -124,6 +102,13 @@ const Quizz: React.FC = () => {
             </Text>
           </TouchableOpacity>
         ))}
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={() => handleAnswer(selectedChoice)}
+          disabled={selectedChoice === null}
+        >
+          <Text style={styles.submitButtonText}>Submit</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -196,6 +181,17 @@ const styles = StyleSheet.create({
   choiceTextSelected: {
     color: 'white', // Text color when a choice is selected
     fontSize: 16,
+  },
+  submitButton: {
+    backgroundColor: '#3498db', // Blue button color
+    padding: 10,
+    marginVertical: 10,
+    borderRadius: 15,
+  },
+  submitButtonText: {
+    color: '#ecf0f1', // Light text color
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 
