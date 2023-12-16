@@ -1,3 +1,4 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 
@@ -28,7 +29,7 @@ const CircleIndicator = ({ totalQuestions, currentQuestion }:{totalQuestions:any
                 color:
                   circleNumber === currentQuestion
                     ? 'black' // Text color for the current question (black)
-                    : 'white', // Text color for the previous questions (white)
+                    : '#000f', // Text color for the previous questions (white)
               },
             ]}
           >
@@ -78,7 +79,13 @@ const Quizz = () => {
   };
 
   return (
-    <View style={styles.container}>
+ 
+      <LinearGradient
+      colors={['#ff0200', '#f54a03']}
+      start={{ x: 0, y: 1 }}
+      end={{ x: 1, y: 0 }}
+      style={styles.container}
+    > 
       <CircleIndicator totalQuestions={questions.length} currentQuestion={currentQuestion + 1} />
 
       <View style={styles.choicesContainer}>
@@ -103,14 +110,22 @@ const Quizz = () => {
           </TouchableOpacity>
         ))}
         <TouchableOpacity
-          style={styles.submitButton}
+          
           onPress={() => handleAnswer(selectedChoice)}
           disabled={selectedChoice === null}
         >
+          <LinearGradient
+      colors={['#FFD710', '#FF4510']} // Light orange to red gradient
+      start={{ x: 0, y: 1 }}
+      end={{ x: 1, y: 0 }}
+        style={styles.submitButton}
+    > 
           <Text style={styles.submitButtonText}>Submit</Text>
+
+          </LinearGradient>
         </TouchableOpacity>
       </View>
-    </View>
+      </LinearGradient>
   );
 };
 
@@ -119,7 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#3739dd', // Purple background color
+    backgroundColor: 'black', // Purple background color
   },
   circleContainer: {
     flexDirection: 'row',
@@ -131,13 +146,14 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 15,
     borderWidth: 1,
-    borderColor: '#3498db',
+    borderColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 10,
   },
   circleText: {
     fontSize: 16,
+    color:'black'
   },
   questionText: {
     fontSize: 20,
@@ -170,7 +186,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   selectedChoice: {
-    backgroundColor: '#5a4ff5',
+    backgroundColor: 'orange',
     borderRadius: 15,
     padding: 10,
   },
@@ -183,13 +199,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   submitButton: {
-    backgroundColor: '#3498db', // Blue button color
-    padding: 10,
+     padding: 10,
     marginVertical: 10,
     borderRadius: 15,
   },
   submitButtonText: {
-    color: '#ecf0f1', // Light text color
+    color: 'white', // Light text color
+    fontWeight:'bold',
+    textTransform:'uppercase',
     fontSize: 16,
     textAlign: 'center',
   },

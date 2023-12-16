@@ -85,13 +85,27 @@ export default function MultiStep() {
     <View style={styles.container}>
     <View style={styles.imageContainer}>
       {image ? <Image source={{ uri: image }} style={styles.image} /> :
-      <View style={{backgroundColor:"#686de0",width:320,height:440,
-      borderRadius:25}}/>}
+      <View>
+          <LinearGradient
+          style={{width:320,height:440,
+            borderRadius:25}}
+        colors={['#fe7f2d', '#ff0200']}
+ 
+        start={{ x: 0, y: 1 }}
+        end={{ x: 1, y: 0 }}
+      ></LinearGradient>
+        </View>}
     </View>
-    <TouchableOpacity style={styles.button} onPress={processImage}>
-      <Text style={styles.buttonText}>Process Image</Text>
-    </TouchableOpacity>
-
+    <TouchableOpacity>
+          <LinearGradient
+            colors={['#FF4500', '#FFA500']}
+            start={[0, 0]}
+            end={[1, 1]}
+            style={styles.buttonContainer}
+          >
+            <Text style={styles.buttonText}>Submit</Text>
+          </LinearGradient>
+        </TouchableOpacity>
     {/* <TouchableOpacity style={styles.button} onPress={resetView}>
       <Text style={styles.buttonText}>Reset View</Text>
     </TouchableOpacity> */}
@@ -113,6 +127,7 @@ onClose={() => setOpen(!open)}
 <SpeedDial.Action
   icon={{ name: 'add', color: '#fff' }}
   title="Add"
+  buttonStyle={{ backgroundColor: '#f54703' }}
   onPress={() => 
   {
     pickImage()
@@ -122,6 +137,8 @@ onClose={() => setOpen(!open)}
 <SpeedDial.Action
   icon={{ name: 'add', color: '#fff' }}
   title="Graph"
+  buttonStyle={{ backgroundColor: '#f54703' }}
+  
   onPress={() => 
   {
      navigation.push('Graph')
@@ -130,31 +147,42 @@ onClose={() => setOpen(!open)}
 <SpeedDial.Action
   icon={{ name: 'delete', color: '#fff' }}
   title="Delete"
+  buttonStyle={{ backgroundColor: '#f54703' }}
   onPress={() => console.log('Delete Something')}
 />
   <SpeedDial.Action
   icon={{ name: 'autorenew', color: '#fff' }}
   title="Refresh"
+  buttonStyle={{ backgroundColor: '#f54703' }}
   onPress={() => setImage('')}
 />
 <SpeedDial.Action
     icon={{ name: 'help-outline', color: '#fff' }}
     title="Help"
+    buttonStyle={{ backgroundColor: '#f54703' }}
     onPress={() => resetView()}
   />
   <SpeedDial.Action
     icon={{ name: 'help-outline', color: '#fff' }}
     title="Quiz"
+    buttonStyle={{ backgroundColor: '#f54703' }}
     onPress={() => navigation.push('Quizz')}
   />
+    <SpeedDial.Action
+    icon={{ name: 'help-outline', color: '#fff' }}
+    title="Login"
+    buttonStyle={{ backgroundColor: '#f54703' }}
+    onPress={() => navigation.push('Login')}
+  />
 </SpeedDial>
+
   </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1e1e1e',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -180,14 +208,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: 'white',
-    textTransform:"uppercase",
+    color: 'black',
+    fontSize: 18,
+    textTransform:'uppercase',
+    textAlign: 'center',
     width:200,
-    textAlign:"center",
-    borderRadius:20,
-    backgroundColor:"#5352ed",
-    marginBottom:3,
-    padding:10,
-    fontSize: 16,
+    marginRight:10,
+    fontWeight:'bold'
+  },
+  buttonContainer: {
+    borderRadius: 25,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    margin: 10,
   },
 });

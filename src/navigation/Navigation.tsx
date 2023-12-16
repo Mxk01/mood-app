@@ -15,7 +15,7 @@ export default function Navigation () {
     return (
         <NavigationContainer>
           {/*initialRouteName - Sets the default screen of the stack. Must match one of the keys in route configs.*/}
-        <Stack.Navigator initialRouteName='Login'>
+        <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name="Login" options={{headerShown: false}} component={Login} />
 
         <Stack.Screen name="Graph" options={{headerShown: false}} component={Graph} />

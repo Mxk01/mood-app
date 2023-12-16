@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#FFFFFF',
     fontSize: 18,
+    textTransform:'uppercase',
     textAlign: 'center',
   },
   underneathText: {
