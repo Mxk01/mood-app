@@ -8,7 +8,7 @@ import FaceRecognition from '../screens/FaceRecognition';
 import Graph from '../screens/Graph'
 import Quizz from '../screens/Quizz';
 import Login from '../screens/Login';
-
+import Register from '../screens/Register';
 // Provides a way for your app to transition between screens where each new screen is placed on top of a stack.
 const Stack = createNativeStackNavigator();
 export default function Navigation () {
@@ -16,7 +16,19 @@ export default function Navigation () {
         <NavigationContainer>
           {/*initialRouteName - Sets the default screen of the stack. Must match one of the keys in route configs.*/}
         <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Login" options={{headerShown: false}} component={Login} />
+        <Stack.Screen options={{
+              headerShown: false,
+              presentation: 'modal',
+              animationTypeForReplace: 'push',
+              animation:'slide_from_right'
+            }} name="Login"   component={Login} />
+        <Stack.Screen name="Register"
+        options={{
+          headerShown: false,
+          presentation: 'modal',
+          animationTypeForReplace: 'push',
+          animation:'slide_from_right'
+        }} component={Register} />
 
         <Stack.Screen name="Graph" options={{headerShown: false}} component={Graph} />
 

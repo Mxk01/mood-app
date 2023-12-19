@@ -5,7 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const App = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+    const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
   return (
     <View style={styles.container}>
       {/* Top Half */}
@@ -19,8 +20,8 @@ const App = () => {
         <View style={styles.circle} />
          
       </LinearGradient>
-      <Text style={styles.mainText}>Moody</Text>
-      
+      <Text style={styles.mainText}>Register</Text>
+
       {/* Form */}
       <View style={styles.formContainer}>
         
@@ -37,16 +38,13 @@ const App = () => {
             style={styles.buttonContainer}
           >
             <Text style={styles.buttonText}>Submit</Text>
- 
-           </LinearGradient>
-           <Button title="Do not have an account?"          
-           color={"transparent"}
-           onPress={()=>navigation.navigate('Register')}/>
-
+          </LinearGradient>
         </TouchableOpacity>
+        <Button 
+        color={"transparent"}
+        title="Already have an account?"   onPress={()=>navigation.goBack()}/>
       </View>
-
-      {/* Text Underneath */}
+       {/* Text Underneath */}
       <Text style={styles.underneathText}>Something underneath</Text>
 
       {/* Bottom Half */}
@@ -70,22 +68,22 @@ const styles = StyleSheet.create({
   topHalf: {
     position: 'absolute',
     top: -300, // Adjust the value to create space
-    left: -150,
-    
+    left: 100,
+    transform:[{rotateX:'150deg'},{scaleY:-1}],
     right: 0,
     bottom: '50%',
     borderRadius: 400, // Make it a circle
   },
   circle: {
-    width: 50,
+    width: 40,
     height: 50,
     borderRadius: 15,
     backgroundColor: 'black',
     zIndex: 100,
     position: 'absolute',
-    top: '80%',
+    top: '85%',
     left: '80%',
-    transform: [{ translateX: -100 }, { translateY: -90 },{rotateZ:'15deg'}],
+    transform: [{ translateX: -100 }, { translateY: -90 },{rotateZ:'6deg'} ],
   },
   bottomHalf: {
     position: 'absolute',
@@ -139,6 +137,7 @@ const styles = StyleSheet.create({
     textTransform:'uppercase',
     fontWeight:'bold',
     letterSpacing:3,
+    marginLeft:100,
     marginBottom:10
   }
 });
