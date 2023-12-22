@@ -53,7 +53,7 @@ const CarouselMain = () => {
       >
         <View style={styles.page} key="1">
           <LottieView source={require('../assets/animations/penguin.json')} autoPlay/>
-          <Text style={styles.header}>HELLO WORLD</Text>
+          <Text style={styles.header}>HELLO</Text>
         </View>
     
         <View style={styles.page} key="2">
