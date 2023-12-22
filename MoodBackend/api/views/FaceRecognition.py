@@ -32,7 +32,7 @@ def connectFrontEnd(request: Request):
             # Save the instance to the database
             image_model.save()
 
-            return Response({'message': 'Image saved successfully'}, status=201)
+            return Response({'message': 'Image saved successfully!'}, status=201)
         else:
             return Response({'error': 'No image data provided'}, status=400)
     
