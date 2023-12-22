@@ -1,11 +1,17 @@
 import React, { useState,useRef,useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, StatusBar } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import LottieView from 'lottie-react-native';
 import Login from './Login';
 
 
 const CarouselMain = () => {
+  
+    useEffect(() => {
+      // Hide the status bar when the component mounts
+      StatusBar.setHidden(true);
+   
+    }, []);
   const [currentPage, setCurrentPage] = useState(0);
 
   const onPageSelected = (event: { nativeEvent: { position: number } }) => {
@@ -82,4 +88,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CarouselMain;
+export default CarouselMain
