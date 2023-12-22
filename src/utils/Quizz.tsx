@@ -1,7 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 
-const CircleIndicator = ({ totalQuestions, currentQuestion }:{totalQuestions:any,currentQuestion:any}) => {
+type Questions = {
+  question: string;
+  choices: string[];
+  correctAnswer: string;
+};
+
+const CircleIndicator = ({
+  totalQuestions,
+  currentQuestion,
+}: {
+  totalQuestions: number;
+  currentQuestion: number;
+}) => {
   const circles = Array.from({ length: totalQuestions }, (_, index) => index + 1);
 
   return (
@@ -43,9 +55,9 @@ const CircleIndicator = ({ totalQuestions, currentQuestion }:{totalQuestions:any
 const Quizz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [selectedChoice, setSelectedChoice] = useState<string|null>(null);
+  const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
 
-  const questions = [
+  const questions: Questions[] = [
     {
       question: 'What is the capital of France?',
       choices: ['Berlin', 'Madrid', 'Paris', 'Rome'],
@@ -59,16 +71,16 @@ const Quizz = () => {
     // Add more questions as needed
   ];
 
-  const handleAnswer = (selectedAnswer:any) => {
+  const handleAnswer = (selectedAnswer: string) => {
     const currentQuestionData = questions[currentQuestion];
 
     if (selectedAnswer === currentQuestionData.correctAnswer) {
-      setScore(score + 1);
+      setScore((prevScore) => prevScore + 1);
     }
 
     // Move to the next question or end the quiz
     if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
+      setCurrentQuestion((prevQuestion) => prevQuestion + 1);
       setSelectedChoice(null); // Reset selected choice for the next question
     } else {
       // End of quiz, display score or navigate to a different screen
@@ -82,8 +94,10 @@ const Quizz = () => {
       <CircleIndicator totalQuestions={questions.length} currentQuestion={currentQuestion + 1} />
 
       <View style={styles.choicesContainer}>
-        <Text style={styles.questionText}>{questions[currentQuestion].question}</Text>
-        {questions[currentQuestion].choices.map((choice, index) => (
+        <Text style={styles.questionText}>
+          {currentQuestion < questions.length && questions[currentQuestion].question}
+        </Text>
+        {questions[currentQuestion]?.choices.map((choice, index) => (
           <TouchableOpacity
             key={index}
             style={[
@@ -104,7 +118,7 @@ const Quizz = () => {
         ))}
         <TouchableOpacity
           style={styles.submitButton}
-          onPress={() => handleAnswer(selectedChoice)}
+          onPress={() => handleAnswer(selectedChoice as string)}
           disabled={selectedChoice === null}
         >
           <Text style={styles.submitButtonText}>Submit</Text>
@@ -113,6 +127,10 @@ const Quizz = () => {
     </View>
   );
 };
+
+
+export default Quizz;
+
 
 const styles = StyleSheet.create({
   container: {
@@ -195,4 +213,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Quizz;
