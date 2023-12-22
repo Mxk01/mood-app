@@ -52,7 +52,9 @@ const CarouselMain = () => {
         <View style={styles.page} key="2">
           <LottieView source={require('../assets/animations/astronaut.json')} autoPlay/>
         </View>
+        <View style={styles.page} key="3"> 
         <Login/>
+        </View>
       </PagerView>
       {renderPagerIndicator()}
     </View>

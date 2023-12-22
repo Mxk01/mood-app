@@ -148,6 +148,12 @@ onClose={() => setOpen(!open)}
     buttonStyle={{ backgroundColor: '#f54703' }}
     onPress={() => navigation.push('Quizz')}
   />
+    <SpeedDial.Action
+    icon={{ name: 'help-outline', color: '#fff' }}
+    title="User Map"
+    buttonStyle={{ backgroundColor: '#f54703' }}
+    onPress={() => navigation.push('Map')}
+  />
 
 </SpeedDial>
 

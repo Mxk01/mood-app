@@ -9,6 +9,7 @@ import Register from '../screens/Register';
 import Login from '../screens/Login';
  import Home from '../screens/Home';
 import Landing from '../screens/Landing';
+import UserMap from '../screens/UserMap';
 // Provides a way for your app to transition between screens where each new screen is placed on top of a stack.
 const Stack = createNativeStackNavigator();
 export default function Navigation () {
@@ -22,6 +23,7 @@ export default function Navigation () {
           <Stack.Screen name="Login" options={{headerShown: false}} component={Login} />
           <Stack.Screen name="Register" options={{headerShown: false}} component={Register} />
           <Stack.Screen name="Quizz" options={{headerShown: false}} component={Quizz} />
+          <Stack.Screen name="Map" options={{headerShown: false}} component={UserMap} />
          </Stack.Navigator>
       </NavigationContainer>
     )

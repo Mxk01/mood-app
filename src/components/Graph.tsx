@@ -6,17 +6,17 @@ export default function Graph() {
   const [selectedMood, setSelectedMood] = useState<string>(''); // Initial state is null, showing all moods
 
   const barData = [
-    { day: '1', mood: 'happy', value: 40, frontColor: '#177AD5' },
+    { day: '1', mood: 'happy', value: 40, frontColor: 'orange' },
     { day: '1', mood: 'sad', value: 20, frontColor: '#ED6665' },
-    { day: '2', mood: 'happy', value: 50, frontColor: '#177AD5' },
+    { day: '2', mood: 'happy', value: 50, frontColor: 'orange'},
     { day: '2', mood: 'sad', value: 40, frontColor: '#ED6665' },
-    { day: '3', mood: 'happy', value: 75, frontColor: '#177AD5' },
+    { day: '3', mood: 'happy', value: 75, frontColor: 'orange'},
     { day: '3', mood: 'sad', value: 25, frontColor: '#ED6665' },
-    { day: '4', mood: 'happy', value: 30, frontColor: '#177AD5' },
+    { day: '4', mood: 'happy', value: 30, frontColor: 'orange'},
     { day: '4', mood: 'sad', value: 20, frontColor: '#ED6665' },
-    { day: '5', mood: 'happy', value: 60, frontColor: '#177AD5' },
+    { day: '5', mood: 'happy', value: 60, frontColor: 'orange'},
     { day: '5', mood: 'sad', value: 40, frontColor: '#ED6665' },
-    { day: '6', mood: 'happy', value: 65, frontColor: '#177AD5' },
+    { day: '6', mood: 'happy', value: 65, frontColor: 'orange'},
     { day: '6', mood: 'sad', value: 30, frontColor: '#ED6665' },
   ];
 
@@ -29,6 +29,8 @@ export default function Graph() {
             color: 'white',
             fontSize: 20,
             fontWeight: 'bold',
+            padding:50,
+            textTransform:'uppercase',
             textAlign: 'center',
           }}
         >
@@ -120,9 +122,10 @@ export default function Graph() {
   return (
     <View
       style={{
-        backgroundColor: '#333340',
+        backgroundColor: 'black',
         paddingBottom: 40,
         borderRadius: 10,
+        flex:1
       }}
     >
       {renderTitle()}
