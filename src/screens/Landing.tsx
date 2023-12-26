@@ -7,8 +7,9 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import axios, { AxiosError } from 'axios';
 import * as FileSystem from 'expo-file-system';
 import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
- 
+import * as Network from 'expo-network';
 import { SpeedDial } from 'react-native-elements';
+import { LandingStyles } from '../utils/styles/landing';
 export default function Landing() {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [open, setOpen] = React.useState(false);
@@ -42,14 +43,16 @@ export default function Landing() {
   const postImage = async () => {
     try {
       if (image) {
-        const formData = new FormData();
+        let ip = await Network.getIpAddressAsync();
+        console.log(ip)
+        const formData:FormData = new FormData();
         formData.append('image', {
           uri: image,
           type: 'image/jpeg',
           name: 'photo.jpg',
         } as any);
-
-        const response = await axios.post('http://10.0.2.2:8000/api/moody', formData, {
+ 
+        const response = await axios.post('http://127.0.0.1:8000/api/moody', formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
 
@@ -62,9 +65,9 @@ export default function Landing() {
     }
   };
   return (
-    <View style={styles.container}>
-    <View style={styles.imageContainer}>
-      {image ? <Image source={{ uri: image }} style={styles.image} /> :
+    <View style={LandingStyles.container}>
+    <View style={LandingStyles.imageContainer}>
+      {image ? <Image source={{ uri: image }} style={LandingStyles.image} /> :
       <View>
           <LinearGradient
           style={{width:320,height:440,
@@ -81,22 +84,16 @@ export default function Landing() {
             colors={['#FF4500', '#FFA500']}
             start={[0, 0]}
             end={[1, 1]}
-            style={styles.buttonContainer}
+            style={LandingStyles.buttonContainer}
           >
-            <Text style={styles.buttonText} onPress={postImage}>Submit</Text>
+            <Text style={LandingStyles.buttonText} onPress={postImage}>Submit</Text>
           </LinearGradient>
         </TouchableOpacity>
-    {/* <TouchableOpacity style={styles.button} onPress={resetView}>
-      <Text style={styles.buttonText}>Reset View</Text>
-    </TouchableOpacity> */}
-
+ 
     <View style={{ flexDirection: "row", padding: 20, justifyContent: "center", alignItems: "center" }}>
-      {/* Your additional components (IconButton and CircleButton) used to be here */}
+  
     </View>
-{/* <Icon  icon="edit" label="Edit" onPress={doSomething} />
-
-    <CircleButton onPress={pickImage}/> */}
-    {/* <Icon  icon="refresh" label="Reset" onPress={()=>setImage('')} /> */}
+ 
       <SpeedDial
 isOpen={open}
 icon={{ name: 'edit', color: '#fff' }}
@@ -160,47 +157,4 @@ onClose={() => setOpen(!open)}
   </View>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  imageContainer: {
-    flex: 1,
-    paddingTop: 58,
-  },
-  image: {
-    width: 320,
-    height: 440,
-    borderRadius: 18,
-  },
-  button: {
-    marginTop: 15,
-    width: '80%',
-    alignItems: 'center', // Center the button horizontally
-  },
-  gradient: {
-    width: '100%', // Set a fixed width for the LinearGradient
-    borderRadius: 15,
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonText: {
-    color: 'black',
-    fontSize: 18,
-    textTransform:'uppercase',
-    textAlign: 'center',
-    width:200,
-    marginRight:10,
-    fontWeight:'bold'
-  },
-  buttonContainer: {
-    borderRadius: 25,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    margin: 10,
-  },
-});
+ 
