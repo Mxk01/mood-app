@@ -1,7 +1,7 @@
 from deepface import DeepFace
 
 # Analyze the emotion in the image
-face_analysis = DeepFace.analyze(img_path="happy.jpg")
+face_analysis = DeepFace.analyze(img_path="./assets/images/happy.jpg")
 
 # Access emotion information from the first face in the list
 first_face = face_analysis[0]
