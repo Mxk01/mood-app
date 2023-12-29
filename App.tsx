@@ -11,6 +11,8 @@ import {
   View,
 } from 'react-native';
 import Navigation from './src/navigation/Navigation';
+import axios from 'axios';
+
 
 
 function App(): JSX.Element {
