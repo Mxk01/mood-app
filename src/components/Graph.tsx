@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { BarChart } from 'react-native-gifted-charts';
 
-export default function Graph() {
+const Graph  = ():React.JSX.Element | any =>  {
   const [selectedMood, setSelectedMood] = useState<string>(''); // Initial state is null, showing all moods
 
   const barData = [
@@ -23,125 +23,103 @@ export default function Graph() {
   const renderTitle = () => {
     return (
       <View style={{ marginVertical: 30 }}>
- 
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 20,
-            fontWeight: 'bold',
-            padding:50,
-            textTransform:'uppercase',
-            textAlign: 'center',
-          }}
-        >
-          Your mood this month
-        </Text>
 
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            marginTop: 24,
-            backgroundColor: 'yellow',
-          }}
-        >
-          <TouchableOpacity onPress={() => setSelectedMood('')}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View
-                style={{
-                  height: 12,
-                  width: 12,
-                  borderRadius: 6,
-                  backgroundColor: '#177AD5',
-                  marginRight: 8,
-                }}
-              />
-              <Text
-                style={{
-                  width: 60,
-                  height: 16,
-                  color: selectedMood === '' ? 'white' : 'lightgray',
-                }}
-              >
-                All Moods
-              </Text>
-            </View>
-          </TouchableOpacity>
+      <Text
+        style={{
+          color: 'white',
+          fontSize: 20,
+          fontWeight: 'bold',
+          padding:50,
+          textTransform:'uppercase',
+          textAlign: 'center',
+        }}
+        testID='graph-header'
+      >
+        Your mood this month
+      </Text>
 
-          <TouchableOpacity onPress={() => setSelectedMood('happy')}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View
-                style={{
-                  height: 12,
-                  width: 12,
-                  borderRadius: 6,
-                  backgroundColor: '#177AD5',
-                  marginRight: 8,
-                }}
-              />
-              <Text
-                style={{
-                  width: 60,
-                  height: 16,
-                  color: selectedMood === 'happy' ? 'white' : 'lightgray',
-                }}
-              >
-                Happy
-              </Text>
-            </View>
-          </TouchableOpacity>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
+          marginTop: 24,
+          backgroundColor: 'yellow',
+        }}
+      >
+        <TouchableOpacity onPress={() => setSelectedMood('')}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View
+              style={{
+                height: 12,
+                width: 12,
+                borderRadius: 6,
+                backgroundColor: '#177AD5',
+                marginRight: 8,
+              }}
+            />
+            <Text
+              style={{
+                width: 60,
+                height: 16,
+                color: selectedMood === '' ? 'white' : 'lightgray',
+              }}
+              testID='all-moods-button'
+            >
+              All Moods
+            </Text>
+          </View>
+        </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => setSelectedMood('sad')}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View
-                style={{
-                  height: 12,
-                  width: 12,
-                  borderRadius: 6,
-                  backgroundColor: '#ED6665',
-                  marginRight: 8,
-                }}
-              />
-              <Text
-                style={{
-                  width: 60,
-                  height: 16,
-                  color: selectedMood === 'sad' ? 'white' : 'lightgray',
-                }}
-              >
-                Sad
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={() => setSelectedMood('happy')}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View
+              style={{
+                height: 12,
+                width: 12,
+                borderRadius: 6,
+                backgroundColor: '#177AD5',
+                marginRight: 8,
+              }}
+            />
+            <Text
+              style={{
+                width: 60,
+                height: 16,
+                color: selectedMood === 'happy' ? 'white' : 'lightgray',
+              }}
+              testID='happy-button'
+            >
+              Happy
+            </Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => setSelectedMood('sad')}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View
+              style={{
+                height: 12,
+                width: 12,
+                borderRadius: 6,
+                backgroundColor: '#ED6665',
+                marginRight: 8,
+              }}
+            />
+            <Text
+              style={{
+                width: 60,
+                height: 16,
+                color: selectedMood === 'sad' ? 'white' : 'lightgray',
+              }}
+              testID='sad-button'
+            >
+              Sad
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
-    );
-  };
-
-  return (
-    <View
-      style={{
-        backgroundColor: 'black',
-        paddingBottom: 40,
-        borderRadius: 10,
-        flex:1
-      }}
-    >
-      {renderTitle()}
-      <BarChart
-        data={selectedMood ? barData.filter((bar) => bar.mood === selectedMood) : barData}
-        barWidth={8}
-        spacing={24}
-        roundedTop
-        roundedBottom
-        hideRules
-        xAxisThickness={0}
-        yAxisThickness={0}
-        yAxisTextStyle={{ color: 'gray' }}
-        noOfSections={3}
-        maxValue={75}
-      />
     </View>
   );
-}
+            }}
+export default Graph
