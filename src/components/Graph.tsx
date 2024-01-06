@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Platform, Alert } from 'react-native';
-import { BarChart } from 'react-native-gifted-charts';
+import { BarChart, LineChart } from "react-native-gifted-charts"
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 
@@ -131,7 +131,35 @@ const Graph = () => {
   return (
     <View style={{ flex: 1, backgroundColor: 'black' }}>
       {renderTitle()}
-      <BarChart data={filteredData} />
+ 
+          <LineChart
+
+              initialSpacing={0}
+
+              data={filteredData}
+
+              spacing={30}
+
+              hideDataPoints
+
+              thickness={5}
+
+              hideRules
+
+              hideYAxisText
+
+              yAxisColor="#0BA5A4"
+
+              showVerticalLines
+
+              verticalLinesColor="rgba(14,164,164,0.5)"
+
+              xAxisColor="#0BA5A4"
+
+              color="#0BA5A4"
+
+          />
+          <BarChart data={filteredData}/>
     </View>
   );
 };
