@@ -11,18 +11,17 @@
         }
       ]
     ],
-    
-     
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./src/assets/images-icons/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#25292e" 
-    }
-  ,
-    "assetBundlePatterns": ["**/*"],
+      "backgroundColor": "#25292e"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -31,10 +30,18 @@
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.example.phoneapplicationexpo"  
+      "package": "com.example.phoneapplicationexpo",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8edd4427-22ca-4c4c-bb73-7bdb05cfd2e0"
+      }
     }
   }
 }
