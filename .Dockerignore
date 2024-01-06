@@ -1,0 +1,23 @@
+# .dockerignore
+
+# Ignore node_modules since dependencies will be installed inside the Docker container
+node_modules
+
+# Ignore files generated during the build process
+/build
+/.expo
+/*.log
+
+# Ignore development-specific files
+*.test.js
+*.spec.js
+__tests__
+
+# Ignore editor-related files
+.vscode
+.idea
+
+# Ignore OS and editor backup files
+.DS_Store
+*.swp
+*~

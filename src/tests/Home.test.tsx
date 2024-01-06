@@ -1,9 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import App from '../screens/CarouselMain';
-
-test('renders CarouselMain component', () => {
-  const { getByText, getByTestId } = render(<CarouselMain />);
+import Home from '../screens/Home'
+test('renders Home component', () => {
+  const { getByText, getByTestId } = render(<Home />);
   
   // Check if the component renders correctly
   expect(getByText('HELLO Testing hsit')).toBeTruthy();
@@ -14,7 +13,7 @@ test('renders CarouselMain component', () => {
 });
 
 test('changes page on button press', () => {
-  const { getByTestId } = render(<CarouselMain />);
+  const { getByTestId } = render(<Home />);
 
   // Check if the initial page is 0
   expect(getByTestId('paginationDot-0')).toHaveStyle({ backgroundColor: '#e74c3c' });
@@ -29,7 +28,7 @@ test('changes page on button press', () => {
 });
 
 test('renders Login component', () => {
-  const { getByTestId } = render(<CarouselMain />);
+  const { getByTestId } = render(<Home />);
 
   // Check if the Login component is rendered
   expect(getByTestId('loginComponent')).toBeTruthy();
